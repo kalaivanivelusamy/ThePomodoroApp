@@ -1,0 +1,19 @@
+{
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "symbols" : [
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "gear.svg",
+      "idiom" : "universal",
+      "unassigned" : true
+    }
+  ]
+}
