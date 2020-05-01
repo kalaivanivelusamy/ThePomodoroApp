@@ -1,9 +1,22 @@
 //
 //  CustomEffects.swift
 //  ThePomodoroApp
-//
-//  Created by V, Kalaivani V. (623-Extern) on 30/04/20.
-//  Copyright © 2020 V, Kalaivani V. (623-Extern). All rights reserved.
-//
+////
 
-import Foundation
+import UIKit
+
+extension UILabel{
+    
+    func startBlink(){
+        UIView.animate(withDuration: 0.8,
+        delay:0.0,
+        options:[.curveEaseInOut, .autoreverse, .repeat],
+        animations: { self.alpha = 0 },
+        completion: nil)
+    }
+    
+    func stopBlink(){
+        layer.removeAllAnimations()
+        alpha = 1
+    }
+}

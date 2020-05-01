@@ -7,3 +7,8 @@
 //
 
 import Foundation
+protocol LongBreakTimerProtocol:class {
+    
+    func updateDescForLongBreak()
+    func updateTimeInMinutesForLongBreak(with time: TimeInterval)
+}

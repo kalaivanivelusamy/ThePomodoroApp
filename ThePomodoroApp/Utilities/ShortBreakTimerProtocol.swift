@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol ShortBreakTimerProtocol:class {
+    
+    func updateDescForShortBreak()
+    func updateTimeInMinutesForShortBreak(with time: TimeInterval)
+}

@@ -7,3 +7,52 @@
 //
 
 import Foundation
+
+final class Task{
+    
+    var title = "Task"
+    var duration = Constants.taskDuration
+    var state: TaskState = .NotStarted
+    lazy var timer = Timer()
+    weak var delegate: TaskTimerProtocol?
+    var timeLeft: TimeInterval = Constants.taskDuration
+
+    func setUpTimer(){
+        
+        print("Task time started \(self.timeLeft)")
+       
+        state = .Started
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) {timer in
+            
+            self.timeLeft -= 1
+            if self.timeLeft == Constants.zeroTime{
+                self.state = .Finished
+                self.resetTime()
+                
+            }
+
+            self.delegate?.updateTimeInMinutes(with: self.timeLeft)
+        }
+
+    }
+    
+//    func invalidateTaskTimer(){
+//        timer.invalidate()
+//    }
+    
+    func resetTime(){
+        timer.invalidate()
+       // self.timeLeft = Constants.taskDuration
+    }
+    
+}
+enum TaskState{
+    case Paused
+    case Finished
+    case NotStarted
+    case Started
+}
+
+
+

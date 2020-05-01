@@ -8,22 +8,48 @@
 
 /* Begin PBXBuildFile section */
 		C9B4473A24568192000EEDDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4473924568192000EEDDF /* AppDelegate.swift */; };
-		C9B4473C24568192000EEDDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4473B24568192000EEDDF /* SceneDelegate.swift */; };
-		C9B4473E24568192000EEDDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4473D24568192000EEDDF /* ViewController.swift */; };
-		C9B4474124568192000EEDDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9B4473F24568192000EEDDF /* Main.storyboard */; };
+		C9B4473E24568192000EEDDF /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4473D24568192000EEDDF /* TimerViewController.swift */; };
 		C9B4474324568198000EEDDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9B4474224568198000EEDDF /* Assets.xcassets */; };
 		C9B4474624568198000EEDDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9B4474424568198000EEDDF /* LaunchScreen.storyboard */; };
+		C9B4475124580ADF000EEDDF /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4475024580ADF000EEDDF /* TabBarVC.swift */; };
+		C9B44754245817E9000EEDDF /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44753245817E9000EEDDF /* CustomColor.swift */; };
+		C9B4475624582A50000EEDDF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4475524582A50000EEDDF /* SettingsViewController.swift */; };
+		C9B4475824582EE1000EEDDF /* TaksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4475724582EE1000EEDDF /* TaksViewController.swift */; };
+		C9B4475A2459162A000EEDDF /* PomodoroCoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B447592459162A000EEDDF /* PomodoroCoinsViewController.swift */; };
+		C9B4475C24591704000EEDDF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4475B24591704000EEDDF /* Constants.swift */; };
+		C9B4475E24591C4C000EEDDF /* AlarmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4475D24591C4C000EEDDF /* AlarmConstants.swift */; };
+		C9B4476024598A72000EEDDF /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4475F24598A72000EEDDF /* CustomStackView.swift */; };
+		C9B44762245A9095000EEDDF /* CustomEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44761245A9095000EEDDF /* CustomEffects.swift */; };
+		C9B44764245BF974000EEDDF /* ShortBreakTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44763245BF974000EEDDF /* ShortBreakTask.swift */; };
+		C9B44766245BF9B3000EEDDF /* TaskTimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44765245BF9B3000EEDDF /* TaskTimerProtocol.swift */; };
+		C9B44768245BFC04000EEDDF /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44767245BFC04000EEDDF /* Task.swift */; };
+		C9B4476A245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44769245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift */; };
+		C9B4476C245C808B000EEDDF /* LongBreakTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4476B245C808B000EEDDF /* LongBreakTask.swift */; };
+		C9B4476E245C817C000EEDDF /* LongBreakTimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4476D245C817C000EEDDF /* LongBreakTimerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C9B4473624568192000EEDDF /* ThePomodoroApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePomodoroApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B4473924568192000EEDDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C9B4473B24568192000EEDDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C9B4473D24568192000EEDDF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C9B4474024568192000EEDDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C9B4473D24568192000EEDDF /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		C9B4474224568198000EEDDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9B4474524568198000EEDDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9B4474724568198000EEDDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9B4475024580ADF000EEDDF /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		C9B44753245817E9000EEDDF /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		C9B4475524582A50000EEDDF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C9B4475724582EE1000EEDDF /* TaksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaksViewController.swift; sourceTree = "<group>"; };
+		C9B447592459162A000EEDDF /* PomodoroCoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroCoinsViewController.swift; sourceTree = "<group>"; };
+		C9B4475B24591704000EEDDF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C9B4475D24591C4C000EEDDF /* AlarmConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmConstants.swift; sourceTree = "<group>"; };
+		C9B4475F24598A72000EEDDF /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
+		C9B44761245A9095000EEDDF /* CustomEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEffects.swift; sourceTree = "<group>"; };
+		C9B44763245BF974000EEDDF /* ShortBreakTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortBreakTask.swift; sourceTree = "<group>"; };
+		C9B44765245BF9B3000EEDDF /* TaskTimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimerProtocol.swift; sourceTree = "<group>"; };
+		C9B44767245BFC04000EEDDF /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		C9B44769245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortBreakTimerProtocol.swift; sourceTree = "<group>"; };
+		C9B4476B245C808B000EEDDF /* LongBreakTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongBreakTask.swift; sourceTree = "<group>"; };
+		C9B4476D245C817C000EEDDF /* LongBreakTimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongBreakTimerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +82,36 @@
 		C9B4473824568192000EEDDF /* ThePomodoroApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9B44752245817DC000EEDDF /* Utilities */,
 				C9B4473924568192000EEDDF /* AppDelegate.swift */,
-				C9B4473B24568192000EEDDF /* SceneDelegate.swift */,
-				C9B4473D24568192000EEDDF /* ViewController.swift */,
-				C9B4473F24568192000EEDDF /* Main.storyboard */,
+				C9B4475024580ADF000EEDDF /* TabBarVC.swift */,
+				C9B4473D24568192000EEDDF /* TimerViewController.swift */,
+				C9B447592459162A000EEDDF /* PomodoroCoinsViewController.swift */,
+				C9B4475724582EE1000EEDDF /* TaksViewController.swift */,
+				C9B4475524582A50000EEDDF /* SettingsViewController.swift */,
 				C9B4474224568198000EEDDF /* Assets.xcassets */,
 				C9B4474424568198000EEDDF /* LaunchScreen.storyboard */,
 				C9B4474724568198000EEDDF /* Info.plist */,
 			);
 			path = ThePomodoroApp;
+			sourceTree = "<group>";
+		};
+		C9B44752245817DC000EEDDF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C9B44753245817E9000EEDDF /* CustomColor.swift */,
+				C9B4475B24591704000EEDDF /* Constants.swift */,
+				C9B4475D24591C4C000EEDDF /* AlarmConstants.swift */,
+				C9B4475F24598A72000EEDDF /* CustomStackView.swift */,
+				C9B44761245A9095000EEDDF /* CustomEffects.swift */,
+				C9B4476B245C808B000EEDDF /* LongBreakTask.swift */,
+				C9B44763245BF974000EEDDF /* ShortBreakTask.swift */,
+				C9B44767245BFC04000EEDDF /* Task.swift */,
+				C9B44765245BF9B3000EEDDF /* TaskTimerProtocol.swift */,
+				C9B44769245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift */,
+				C9B4476D245C817C000EEDDF /* LongBreakTimerProtocol.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +174,6 @@
 			files = (
 				C9B4474624568198000EEDDF /* LaunchScreen.storyboard in Resources */,
 				C9B4474324568198000EEDDF /* Assets.xcassets in Resources */,
-				C9B4474124568192000EEDDF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +184,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9B4473E24568192000EEDDF /* ViewController.swift in Sources */,
+				C9B4476A245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift in Sources */,
+				C9B4476024598A72000EEDDF /* CustomStackView.swift in Sources */,
+				C9B4473E24568192000EEDDF /* TimerViewController.swift in Sources */,
+				C9B4475124580ADF000EEDDF /* TabBarVC.swift in Sources */,
+				C9B44764245BF974000EEDDF /* ShortBreakTask.swift in Sources */,
+				C9B4475E24591C4C000EEDDF /* AlarmConstants.swift in Sources */,
+				C9B4476C245C808B000EEDDF /* LongBreakTask.swift in Sources */,
+				C9B44754245817E9000EEDDF /* CustomColor.swift in Sources */,
+				C9B4475824582EE1000EEDDF /* TaksViewController.swift in Sources */,
+				C9B44766245BF9B3000EEDDF /* TaskTimerProtocol.swift in Sources */,
+				C9B4475624582A50000EEDDF /* SettingsViewController.swift in Sources */,
 				C9B4473A24568192000EEDDF /* AppDelegate.swift in Sources */,
-				C9B4473C24568192000EEDDF /* SceneDelegate.swift in Sources */,
+				C9B44762245A9095000EEDDF /* CustomEffects.swift in Sources */,
+				C9B4475A2459162A000EEDDF /* PomodoroCoinsViewController.swift in Sources */,
+				C9B44768245BFC04000EEDDF /* Task.swift in Sources */,
+				C9B4475C24591704000EEDDF /* Constants.swift in Sources */,
+				C9B4476E245C817C000EEDDF /* LongBreakTimerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C9B4473F24568192000EEDDF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C9B4474024568192000EEDDF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C9B4474424568198000EEDDF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
