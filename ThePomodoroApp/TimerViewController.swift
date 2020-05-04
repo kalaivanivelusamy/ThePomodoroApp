@@ -16,6 +16,11 @@ class TimerViewController: UIViewController {
     
     let playpauseBtn = UIButton()
     var tasksCompleted: Float = 0
+    
+    
+    //task brief view
+    
+    let taskBriefView = BriefTaskView()
 
     //timer view
     let timerView = UIView()
@@ -27,8 +32,7 @@ class TimerViewController: UIViewController {
     var timeLabel =  UILabel()
     var timeDescLbl = UILabel()
     var taskDescLbl = UILabel()
-    var currentState = TaskOrBreak.Task
-    var NextState = TaskOrBreak.Task
+    
     
     lazy var timer = Timer()
     
@@ -58,11 +62,13 @@ class TimerViewController: UIViewController {
     //MARK: - Private
     
     private func setUpView(){
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
 
         safeArea = view.layoutMarginsGuide
         
         setUpTimerContainerView()
+        setUpTaskBriefView()
+
         setUpStopButton()
         drawBgShape()
         drawTimeLeftShape()
@@ -82,6 +88,7 @@ class TimerViewController: UIViewController {
     
     
     
+    
     private func setUpTimerContainerView(){
         
         view.addSubview(timerView)
@@ -95,6 +102,25 @@ class TimerViewController: UIViewController {
         let width = timerView.widthAnchor.constraint(equalTo: timerView.heightAnchor)
 
         NSLayoutConstraint.activate([centerY,centerX,height,width])
+    }
+    
+    private func setUpTaskBriefView(){
+        view.addSubview(taskBriefView)
+        taskBriefView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let bottom = taskBriefView.bottomAnchor.constraint(equalTo: timerView.topAnchor, constant: -80)
+        let leading = taskBriefView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20)
+        let trailing = taskBriefView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20)
+        let top = taskBriefView.topAnchor.constraint(equalTo: safeArea.topAnchor,constant: 20)
+        
+        NSLayoutConstraint.activate([bottom,leading,trailing,top])
+        taskBriefView.layer.cornerRadius = 10.0
+        taskBriefView.delegate = self
+        
+//        let tapGesture = UITapGestureRecognizer()
+//        tapGesture.addTarget(self, action: #selector(tapTaskBrief(_:)))
+//        taskBriefView.addGestureRecognizer(tapGesture)
+//        taskBriefView.isUserInteractionEnabled = true
     }
     
      private func setUpStopButton(){
@@ -145,7 +171,7 @@ class TimerViewController: UIViewController {
 
          taskDescLbl.textAlignment = .center
          taskDescLbl.text = " Task"
-         taskDescLbl.textColor = .white
+         taskDescLbl.textColor = .black
          taskDescLbl.font = .boldSystemFont(ofSize: 28)
         
     }
@@ -161,7 +187,7 @@ class TimerViewController: UIViewController {
 
             timeLabel.textAlignment = .center
             timeLabel.text = " 00: \(self.timeLeft.description)"
-            timeLabel.textColor = .white
+            timeLabel.textColor = .black
             timeLabel.font = .boldSystemFont(ofSize: 28)
        }
     
@@ -177,7 +203,7 @@ class TimerViewController: UIViewController {
         timeDescLbl.adjustsFontSizeToFitWidth = true
         
         timeDescLbl.text = "minutes"
-        timeDescLbl.textColor = .white
+        timeDescLbl.textColor = .black
         
     }
     
@@ -200,6 +226,12 @@ class TimerViewController: UIViewController {
     
     //MARK: - Logic
    
+    
+    @objc func tapTaskBrief(_ sender: UITapGestureRecognizer){
+        
+        print("Task is tapped")
+        
+    }
     
     private func stopBlinkEffect(){
         self.taskDescLbl.stopBlink()
@@ -245,9 +277,6 @@ class TimerViewController: UIViewController {
 
     }
   
-    
-    
-    
     private func degreeToRadians(_ number: Double) -> CGFloat{
         return CGFloat(number * 3.14 / 180)
     }
@@ -273,6 +302,12 @@ class TimerViewController: UIViewController {
                 shortBreakModule.resetTime()
             }
             
+            else if longBreakModule.state == .Started{
+                longBreakModule.state = .Paused
+                self.timeLeft = longBreakModule.timeLeft
+                longBreakModule.resetTime()
+            }
+            
             setPlayButton()
             stopFillTime()
 
@@ -293,6 +328,13 @@ class TimerViewController: UIViewController {
                 self.timeLeft = shortBreakModule.timeLeft
             }
             
+            else if longBreakModule.state == .Paused || longBreakModule.state == .NotStarted{
+                longBreakModule.setUpTimer()
+                longBreakModule.delegate?.updateDescForLongBreak()
+                self.timeLeft = longBreakModule.timeLeft
+
+            }
+            
             setPauseBtn()
             startFillTime()
 
@@ -310,7 +352,6 @@ class TimerViewController: UIViewController {
     private func setPauseBtn(){
         playpauseBtn.setBackgroundImage(UIImage(systemName: "pause.fill",withConfiguration: smallConfig), for: .normal)
         playpauseBtn.tag = ButtonState.Pause.rawValue
-
     }
     
 }
@@ -320,13 +361,7 @@ enum ButtonState: Int{
     case Play
 }
 
-enum TaskOrBreak: String{
-    
-    case Task
-    case ShortBreak
-    case LongBreak
-    
-}
+
 
 extension TimerViewController: TaskTimerProtocol{
     
@@ -470,10 +505,16 @@ extension TimerViewController: LongBreakTimerProtocol{
     func resetPomodoro(){
         print("Time for New Pomodoro")
         self.taskDescLbl.text = "Time for New Pomodoro"
-
+        longBreakModule.state = .NotStarted
     }
 
     
 }
 
+extension TimerViewController: TaskBriefTapped{
+    
+    func tappedTask() {
+        self.navigationController?.pushViewController(TasksViewController(), animated: true)
+    }
+}
 

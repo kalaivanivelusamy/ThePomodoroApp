@@ -26,6 +26,9 @@
 		C9B4476A245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44769245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift */; };
 		C9B4476C245C808B000EEDDF /* LongBreakTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4476B245C808B000EEDDF /* LongBreakTask.swift */; };
 		C9B4476E245C817C000EEDDF /* LongBreakTimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4476D245C817C000EEDDF /* LongBreakTimerProtocol.swift */; };
+		C9B44770245E56D4000EEDDF /* BriefTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4476F245E56D4000EEDDF /* BriefTaskView.swift */; };
+		C9B44773245ED9BF000EEDDF /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44772245ED9BF000EEDDF /* NavigationController.swift */; };
+		C9B44775245FBFBC000EEDDF /* AddTaskCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44774245FBFBC000EEDDF /* AddTaskCustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		C9B44769245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortBreakTimerProtocol.swift; sourceTree = "<group>"; };
 		C9B4476B245C808B000EEDDF /* LongBreakTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongBreakTask.swift; sourceTree = "<group>"; };
 		C9B4476D245C817C000EEDDF /* LongBreakTimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongBreakTimerProtocol.swift; sourceTree = "<group>"; };
+		C9B4476F245E56D4000EEDDF /* BriefTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefTaskView.swift; sourceTree = "<group>"; };
+		C9B44772245ED9BF000EEDDF /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		C9B44774245FBFBC000EEDDF /* AddTaskCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskCustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 		C9B4473824568192000EEDDF /* ThePomodoroApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9B44771245ED9A7000EEDDF /* Controller */,
 				C9B44752245817DC000EEDDF /* Utilities */,
 				C9B4473924568192000EEDDF /* AppDelegate.swift */,
 				C9B4475024580ADF000EEDDF /* TabBarVC.swift */,
@@ -103,6 +110,7 @@
 				C9B4475B24591704000EEDDF /* Constants.swift */,
 				C9B4475D24591C4C000EEDDF /* AlarmConstants.swift */,
 				C9B4475F24598A72000EEDDF /* CustomStackView.swift */,
+				C9B4476F245E56D4000EEDDF /* BriefTaskView.swift */,
 				C9B44761245A9095000EEDDF /* CustomEffects.swift */,
 				C9B4476B245C808B000EEDDF /* LongBreakTask.swift */,
 				C9B44763245BF974000EEDDF /* ShortBreakTask.swift */,
@@ -110,8 +118,17 @@
 				C9B44765245BF9B3000EEDDF /* TaskTimerProtocol.swift */,
 				C9B44769245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift */,
 				C9B4476D245C817C000EEDDF /* LongBreakTimerProtocol.swift */,
+				C9B44774245FBFBC000EEDDF /* AddTaskCustomCell.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C9B44771245ED9A7000EEDDF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C9B44772245ED9BF000EEDDF /* NavigationController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9B4476A245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift in Sources */,
+				C9B44775245FBFBC000EEDDF /* AddTaskCustomCell.swift in Sources */,
 				C9B4476024598A72000EEDDF /* CustomStackView.swift in Sources */,
 				C9B4473E24568192000EEDDF /* TimerViewController.swift in Sources */,
 				C9B4475124580ADF000EEDDF /* TabBarVC.swift in Sources */,
@@ -192,9 +210,11 @@
 				C9B4475E24591C4C000EEDDF /* AlarmConstants.swift in Sources */,
 				C9B4476C245C808B000EEDDF /* LongBreakTask.swift in Sources */,
 				C9B44754245817E9000EEDDF /* CustomColor.swift in Sources */,
+				C9B44770245E56D4000EEDDF /* BriefTaskView.swift in Sources */,
 				C9B4475824582EE1000EEDDF /* TaksViewController.swift in Sources */,
 				C9B44766245BF9B3000EEDDF /* TaskTimerProtocol.swift in Sources */,
 				C9B4475624582A50000EEDDF /* SettingsViewController.swift in Sources */,
+				C9B44773245ED9BF000EEDDF /* NavigationController.swift in Sources */,
 				C9B4473A24568192000EEDDF /* AppDelegate.swift in Sources */,
 				C9B44762245A9095000EEDDF /* CustomEffects.swift in Sources */,
 				C9B4475A2459162A000EEDDF /* PomodoroCoinsViewController.swift in Sources */,

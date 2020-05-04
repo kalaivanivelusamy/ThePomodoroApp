@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = UINavigationController(rootViewController: TabBarVC())
+        let navigationController = NavigationController(rootViewController: TimerViewController())
         window?.rootViewController = navigationController
        // navigationController.isNavigationBarHidden = true
         window?.makeKeyAndVisible()

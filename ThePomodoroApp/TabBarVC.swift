@@ -42,7 +42,7 @@ final class TabBarVC: UITabBarController{
         tabBar.barTintColor = .lightGray
         tabBar.tintColor = .dimmedPinkRed
         
-        setUpNavigationController()
+       // setUpNavigationController()
     }
     
     private func setUpViewControllersOfTabs(){
