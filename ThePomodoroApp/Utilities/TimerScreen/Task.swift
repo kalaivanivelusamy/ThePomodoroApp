@@ -9,14 +9,19 @@
 import Foundation
 
 final class Task{
-    
-    var title = "Task"
+    var title: String?
     var duration = Constants.taskDuration
     var state: TaskState = .NotStarted
     lazy var timer = Timer()
     weak var delegate: TaskTimerProtocol?
     var timeLeft: TimeInterval = Constants.taskDuration
-
+    static var currentTask:TaskModel?
+    
+    
+//    func setCurrentTask(){
+//        
+//    }
+    
     func setUpTimer(){
         
         print("Task time started \(self.timeLeft)")

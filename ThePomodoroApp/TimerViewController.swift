@@ -13,7 +13,6 @@ class TimerViewController: UIViewController {
 
     
     var safeArea : UILayoutGuide!
-    
     let playpauseBtn = UIButton()
     var tasksCompleted: Float = 0
     
@@ -56,20 +55,28 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-  
+      }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .always
+        taskModule.title = Task.currentTask?.title
+        //taskDescLbl.text = Task.currentTask?.title
+        taskBriefView.setTaskDetails(details: taskModule.title ?? "", arrow: false)
     }
+    
 
     //MARK: - Private
     
     private func setUpView(){
-        view.backgroundColor = .white
+        view.backgroundColor = .black
 
         safeArea = view.layoutMarginsGuide
         
         setUpTimerContainerView()
         setUpTaskBriefView()
-
         setUpStopButton()
+
         drawBgShape()
         drawTimeLeftShape()
         addTaskDescLbl()
@@ -84,9 +91,10 @@ class TimerViewController: UIViewController {
         taskModule.delegate = self
         shortBreakModule.delegate = self
         longBreakModule.delegate = self
+        
+        
+        print(DatabaseManager.default.debugDescription)
     }
-    
-    
     
     
     private func setUpTimerContainerView(){
@@ -106,14 +114,16 @@ class TimerViewController: UIViewController {
     
     private func setUpTaskBriefView(){
         view.addSubview(taskBriefView)
+        
         taskBriefView.translatesAutoresizingMaskIntoConstraints = false
         
-        let bottom = taskBriefView.bottomAnchor.constraint(equalTo: timerView.topAnchor, constant: -80)
+        //let bottom = taskBriefView.bottomAnchor.constraint(equalTo: timerView.topAnchor, constant: -120)
         let leading = taskBriefView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20)
         let trailing = taskBriefView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20)
-        let top = taskBriefView.topAnchor.constraint(equalTo: safeArea.topAnchor,constant: 20)
+        let top = taskBriefView.topAnchor.constraint(equalTo: view.topAnchor,constant: 80)
+        let height = taskBriefView.heightAnchor.constraint(equalToConstant: 180)
         
-        NSLayoutConstraint.activate([bottom,leading,trailing,top])
+        NSLayoutConstraint.activate([height,leading,trailing,top])
         taskBriefView.layer.cornerRadius = 10.0
         taskBriefView.delegate = self
         
@@ -130,22 +140,26 @@ class TimerViewController: UIViewController {
             
             let bottom = playpauseBtn.topAnchor.constraint(equalTo: timerView.bottomAnchor, constant: 100)
             let centerX = playpauseBtn.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor)
-            let width = playpauseBtn.widthAnchor.constraint(equalToConstant: 40)
-            let height = playpauseBtn.heightAnchor.constraint(equalToConstant:40)
+            let width = playpauseBtn.widthAnchor.constraint(equalToConstant: 50)
+            let height = playpauseBtn.heightAnchor.constraint(equalToConstant:50)
             
             NSLayoutConstraint.activate([bottom,centerX,width,height])
             playpauseBtn.setTitleColor(.black, for: .normal)
-           playpauseBtn.setBackgroundImage(UIImage(systemName: "play.fill",withConfiguration: smallConfig), for: .normal)
-            playpauseBtn.tintColor = .dimmedPinkRed
+            playpauseBtn.backgroundColor = UIColor.orange
+            playpauseBtn.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            playpauseBtn.layer.masksToBounds = true
+            playpauseBtn.layer.cornerRadius = 25
+         //  playpauseBtn.setBackgroundImage(UIImage(systemName: "play.fill",withConfiguration: smallConfig), for: .normal)
+            playpauseBtn.tintColor = .black
             playpauseBtn.addTarget(self, action: #selector(StartStopBtnPressed), for: .touchUpInside)
             playpauseBtn.tag = ButtonState.Play.rawValue
-            playpauseBtn.layer.cornerRadius = 10
+            //playpauseBtn.layer.cornerRadius = 10
         }
     
     private func drawBgShape() {
         bgShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: view.frame.midX, y: view.frame.midY), radius:
             100, startAngle: degreeToRadians(-90), endAngle: degreeToRadians(270), clockwise: true).cgPath
-        bgShapeLayer.strokeColor = UIColor.lightDimmedPinkRed.cgColor
+        bgShapeLayer.strokeColor = UIColor.orange.cgColor
         bgShapeLayer.fillColor = UIColor.clear.cgColor
         bgShapeLayer.lineWidth = 15
         view.layer.addSublayer(bgShapeLayer)
@@ -154,7 +168,7 @@ class TimerViewController: UIViewController {
     private func drawTimeLeftShape() {
         timeLeftShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: view.frame.midX , y: view.frame.midY), radius:
             100, startAngle: degreeToRadians(-90), endAngle: degreeToRadians(270), clockwise: true).cgPath
-        timeLeftShapeLayer.strokeColor = UIColor.dimmedPinkRed.cgColor
+        timeLeftShapeLayer.strokeColor = UIColor.red.cgColor
         timeLeftShapeLayer.fillColor = UIColor.clear.cgColor
         timeLeftShapeLayer.lineWidth = 15
         view.layer.addSublayer(timeLeftShapeLayer)
@@ -166,12 +180,14 @@ class TimerViewController: UIViewController {
         taskDescLbl.translatesAutoresizingMaskIntoConstraints = false
 
         let centerX = taskDescLbl.centerXAnchor.constraint(equalTo: timerView.centerXAnchor)
-        let centerY = taskDescLbl.centerYAnchor.constraint(equalTo: timerView.centerYAnchor, constant: -20)
+        let centerY = taskDescLbl.centerYAnchor.constraint(equalTo: timerView.centerYAnchor,constant: -70)
         NSLayoutConstraint.activate([centerY,centerX])
 
          taskDescLbl.textAlignment = .center
-         taskDescLbl.text = " Task"
-         taskDescLbl.textColor = .black
+        
+        taskDescLbl.text = "Task"
+
+         taskDescLbl.textColor = .white
          taskDescLbl.font = .boldSystemFont(ofSize: 28)
         
     }
@@ -187,7 +203,7 @@ class TimerViewController: UIViewController {
 
             timeLabel.textAlignment = .center
             timeLabel.text = " 00: \(self.timeLeft.description)"
-            timeLabel.textColor = .black
+            timeLabel.textColor = .white
             timeLabel.font = .boldSystemFont(ofSize: 28)
        }
     
@@ -203,7 +219,7 @@ class TimerViewController: UIViewController {
         timeDescLbl.adjustsFontSizeToFitWidth = true
         
         timeDescLbl.text = "minutes"
-        timeDescLbl.textColor = .black
+        timeDescLbl.textColor = .white
         
     }
     
@@ -345,12 +361,12 @@ class TimerViewController: UIViewController {
     }
     
     private func setPlayButton(){
-        playpauseBtn.setBackgroundImage(UIImage(systemName: "play.fill",withConfiguration: smallConfig), for: .normal)
+        playpauseBtn.setImage(UIImage(systemName: "play.fill",withConfiguration: smallConfig), for: .normal)
         playpauseBtn.tag = ButtonState.Play.rawValue
     }
     
     private func setPauseBtn(){
-        playpauseBtn.setBackgroundImage(UIImage(systemName: "pause.fill",withConfiguration: smallConfig), for: .normal)
+        playpauseBtn.setImage(UIImage(systemName: "pause.fill",withConfiguration: smallConfig), for: .normal)
         playpauseBtn.tag = ButtonState.Pause.rawValue
     }
     
@@ -517,4 +533,6 @@ extension TimerViewController: TaskBriefTapped{
         self.navigationController?.pushViewController(TasksViewController(), animated: true)
     }
 }
+
+
 

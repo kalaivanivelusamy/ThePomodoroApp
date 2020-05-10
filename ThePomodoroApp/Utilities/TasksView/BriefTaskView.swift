@@ -32,7 +32,12 @@ final class BriefTaskView: UIView{
     func setTaskDetails(details: String, arrow: Bool = true){
         taskDesc.text = details
         arrowImgView.isHidden = arrow
-        taskDesc.removeGestureRecognizer(tapGesture)
+       // taskDesc.removeGestureRecognizer(tapGesture)
+    }
+    
+    func removeTapAction(){
+        self.taskDesc.removeGestureRecognizer(tapGesture)
+        self.taskDesc.isUserInteractionEnabled = false
     }
     
     private func setUpTaskView(){
@@ -46,10 +51,10 @@ final class BriefTaskView: UIView{
 
         
         NSLayoutConstraint.activate([leading,trailing,width,height])
-       // containerView.backgroundColor = .yellow
+        containerView.backgroundColor = .MediumDarkGray
         containerView.layer.cornerRadius = 10.0
         containerView.layer.borderWidth = 2.0
-        containerView.layer.borderColor = UIColor.lightGray.cgColor
+        //containerView.layer.borderColor = UIColor.darkGray.cgColor
 
     }
     
@@ -64,16 +69,18 @@ final class BriefTaskView: UIView{
         
         NSLayoutConstraint.activate([leading,trailing,top,bottom])
 
-        taskDesc.textColor = .black
+        taskDesc.textColor = .white
         taskDesc.font = .systemFont(ofSize: 24)
         taskDesc.text = "get soil & potassium"
         taskDesc.textAlignment = .center
-      //  taskDesc.isEditable = false
+        taskDesc.isEditable = false
         taskDesc.isUserInteractionEnabled = true
-       
            tapGesture.addTarget(self, action: #selector(tapTaskBrief(_:)))
            taskDesc.addGestureRecognizer(tapGesture)
            taskDesc.isUserInteractionEnabled = true
+        taskDesc.backgroundColor = .clear
+        taskDesc.textAlignment = .left
+        //taskDesc.backgroundColor = .lightGray
         
     }
     
@@ -89,6 +96,7 @@ final class BriefTaskView: UIView{
 
         NSLayoutConstraint.activate([trailing,centerY,width,height])
         arrowImgView.image = UIImage(systemName: "arrow.right")
+        arrowImgView.tintColor = .black
 
     }
     

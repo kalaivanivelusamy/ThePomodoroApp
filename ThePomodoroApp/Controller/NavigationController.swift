@@ -10,7 +10,7 @@ import UIKit
 final class NavigationController: UINavigationController{
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        navigationBar.tintColor = .blue
+        //navigationBar.tintColor = .black
     }
     
     

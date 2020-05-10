@@ -10,12 +10,13 @@ import UIKit
 
 final class AddTaskCustomCell: UITableViewCell{
     
-    private let containerView = BriefTaskView()
+     let taskView = BriefTaskView()
    // private let taskView = UITextView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpView()
+        self.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
@@ -25,23 +26,23 @@ final class AddTaskCustomCell: UITableViewCell{
     
     //MARK: - Public methods
     func set(taskName: String){
-        containerView.setTaskDetails(details: taskName)
+        taskView.setTaskDetails(details: taskName)
     }
     
     //MARK: - Private methods
     private func setUpView(){
-        backgroundColor = .clear
+        //backgroundColor = .gray
         selectionStyle = .none
         
-        addSubview(containerView)
-        containerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(taskView)
+        taskView.translatesAutoresizingMaskIntoConstraints = false
         
-        let leading = containerView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 15)
-        let top = containerView.topAnchor.constraint(equalTo: topAnchor,constant: 15)
-        let bottom = containerView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -15)
-        let trailing = containerView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -15)
+        let leading = taskView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 5)
+        let top = taskView.topAnchor.constraint(equalTo: topAnchor,constant: 5)
+        let bottom = taskView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -5)
+        let trailing = taskView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -5)
         NSLayoutConstraint.activate([leading,top,bottom,trailing])
-
+        
        // setUpTasksView()
     }
     

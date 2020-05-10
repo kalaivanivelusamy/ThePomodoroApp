@@ -21,4 +21,8 @@ extension UIColor{
         return UIColor(red: 246/255,green: 143/255, blue: 144/255, alpha: 1.0)
     }
     
+    class var MediumDarkGray:UIColor{
+        return UIColor(red: 58/255, green: 60/255, blue: 63/255, alpha: 1.0)
+    }
+    
 }

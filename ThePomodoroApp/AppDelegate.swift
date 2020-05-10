@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = NavigationController(rootViewController: TimerViewController())
         window?.rootViewController = navigationController
-       // navigationController.isNavigationBarHidden = true
+        navigationController.navigationBar.prefersLargeTitles = true
+//        navigationController.navigationBar..titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.red]
+
         window?.makeKeyAndVisible()
         return true
     }

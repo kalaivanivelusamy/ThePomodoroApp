@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C95B171A24654CE10043442A /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B171924654CE10043442A /* CreateTaskViewController.swift */; };
 		C9B4473A24568192000EEDDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4473924568192000EEDDF /* AppDelegate.swift */; };
 		C9B4473E24568192000EEDDF /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4473D24568192000EEDDF /* TimerViewController.swift */; };
 		C9B4474324568198000EEDDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9B4474224568198000EEDDF /* Assets.xcassets */; };
@@ -29,9 +30,17 @@
 		C9B44770245E56D4000EEDDF /* BriefTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4476F245E56D4000EEDDF /* BriefTaskView.swift */; };
 		C9B44773245ED9BF000EEDDF /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44772245ED9BF000EEDDF /* NavigationController.swift */; };
 		C9B44775245FBFBC000EEDDF /* AddTaskCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B44774245FBFBC000EEDDF /* AddTaskCustomCell.swift */; };
+		C9B4477A2460D4AC000EEDDF /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = C9B447792460D4AC000EEDDF /* SQLite */; };
+		C9B4477C2460D817000EEDDF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4477B2460D817000EEDDF /* DatabaseManager.swift */; };
+		C9B4477F2460DBCE000EEDDF /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4477E2460DBCE000EEDDF /* TaskRepository.swift */; };
+		C9B447822460DC15000EEDDF /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B447812460DC15000EEDDF /* TaskModel.swift */; };
+		C9DB2F9824664F6400C60599 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DB2F9724664F6400C60599 /* AlertManager.swift */; };
+		C9DB2F9D2466BA3200C60599 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DB2F9C2466BA3200C60599 /* CalendarViewController.swift */; };
+		C9DB2FA02466BE2800C60599 /* CVCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C9DB2F9F2466BE2800C60599 /* CVCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C95B171924654CE10043442A /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		C9B4473624568192000EEDDF /* ThePomodoroApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePomodoroApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B4473924568192000EEDDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9B4473D24568192000EEDDF /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +65,11 @@
 		C9B4476F245E56D4000EEDDF /* BriefTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefTaskView.swift; sourceTree = "<group>"; };
 		C9B44772245ED9BF000EEDDF /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		C9B44774245FBFBC000EEDDF /* AddTaskCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskCustomCell.swift; sourceTree = "<group>"; };
+		C9B4477B2460D817000EEDDF /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		C9B4477E2460DBCE000EEDDF /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
+		C9B447812460DC15000EEDDF /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		C9DB2F9724664F6400C60599 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		C9DB2F9C2466BA3200C60599 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +77,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B4477A2460D4AC000EEDDF /* SQLite in Frameworks */,
+				C9DB2FA02466BE2800C60599 /* CVCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C95B171B24654CF30043442A /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				C95B171C24654CFF0043442A /* Controller */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		C95B171C24654CFF0043442A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C95B171924654CE10043442A /* CreateTaskViewController.swift */,
+				C9B4475724582EE1000EEDDF /* TaksViewController.swift */,
+				C9DB2F9C2466BA3200C60599 /* CalendarViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		C9B4472D24568192000EEDDF = {
 			isa = PBXGroup;
 			children = (
@@ -88,13 +122,16 @@
 		C9B4473824568192000EEDDF /* ThePomodoroApp */ = {
 			isa = PBXGroup;
 			children = (
-				C9B44771245ED9A7000EEDDF /* Controller */,
 				C9B44752245817DC000EEDDF /* Utilities */,
+				C9B4477B2460D817000EEDDF /* DatabaseManager.swift */,
+				C9B447802460DC0B000EEDDF /* Model */,
+				C9B4477D2460DBBF000EEDDF /* Repository */,
+				C9B44771245ED9A7000EEDDF /* Controller */,
 				C9B4473924568192000EEDDF /* AppDelegate.swift */,
 				C9B4475024580ADF000EEDDF /* TabBarVC.swift */,
+				C95B171B24654CF30043442A /* Tasks */,
 				C9B4473D24568192000EEDDF /* TimerViewController.swift */,
 				C9B447592459162A000EEDDF /* PomodoroCoinsViewController.swift */,
-				C9B4475724582EE1000EEDDF /* TaksViewController.swift */,
 				C9B4475524582A50000EEDDF /* SettingsViewController.swift */,
 				C9B4474224568198000EEDDF /* Assets.xcassets */,
 				C9B4474424568198000EEDDF /* LaunchScreen.storyboard */,
@@ -109,16 +146,11 @@
 				C9B44753245817E9000EEDDF /* CustomColor.swift */,
 				C9B4475B24591704000EEDDF /* Constants.swift */,
 				C9B4475D24591C4C000EEDDF /* AlarmConstants.swift */,
-				C9B4475F24598A72000EEDDF /* CustomStackView.swift */,
-				C9B4476F245E56D4000EEDDF /* BriefTaskView.swift */,
 				C9B44761245A9095000EEDDF /* CustomEffects.swift */,
-				C9B4476B245C808B000EEDDF /* LongBreakTask.swift */,
-				C9B44763245BF974000EEDDF /* ShortBreakTask.swift */,
-				C9B44767245BFC04000EEDDF /* Task.swift */,
-				C9B44765245BF9B3000EEDDF /* TaskTimerProtocol.swift */,
-				C9B44769245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift */,
-				C9B4476D245C817C000EEDDF /* LongBreakTimerProtocol.swift */,
-				C9B44774245FBFBC000EEDDF /* AddTaskCustomCell.swift */,
+				C9B4475F24598A72000EEDDF /* CustomStackView.swift */,
+				C9DB2F9724664F6400C60599 /* AlertManager.swift */,
+				C9B447772460CF2E000EEDDF /* TasksView */,
+				C9B447762460CEF1000EEDDF /* TimerScreen */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -129,6 +161,44 @@
 				C9B44772245ED9BF000EEDDF /* NavigationController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		C9B447762460CEF1000EEDDF /* TimerScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C9B4476B245C808B000EEDDF /* LongBreakTask.swift */,
+				C9B44763245BF974000EEDDF /* ShortBreakTask.swift */,
+				C9B44767245BFC04000EEDDF /* Task.swift */,
+				C9B4476D245C817C000EEDDF /* LongBreakTimerProtocol.swift */,
+				C9B44769245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift */,
+				C9B44765245BF9B3000EEDDF /* TaskTimerProtocol.swift */,
+			);
+			path = TimerScreen;
+			sourceTree = "<group>";
+		};
+		C9B447772460CF2E000EEDDF /* TasksView */ = {
+			isa = PBXGroup;
+			children = (
+				C9B4476F245E56D4000EEDDF /* BriefTaskView.swift */,
+				C9B44774245FBFBC000EEDDF /* AddTaskCustomCell.swift */,
+			);
+			path = TasksView;
+			sourceTree = "<group>";
+		};
+		C9B4477D2460DBBF000EEDDF /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				C9B4477E2460DBCE000EEDDF /* TaskRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		C9B447802460DC0B000EEDDF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C9B447812460DC15000EEDDF /* TaskModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +217,10 @@
 			dependencies = (
 			);
 			name = ThePomodoroApp;
+			packageProductDependencies = (
+				C9B447792460D4AC000EEDDF /* SQLite */,
+				C9DB2F9F2466BE2800C60599 /* CVCalendar */,
+			);
 			productName = ThePomodoroApp;
 			productReference = C9B4473624568192000EEDDF /* ThePomodoroApp.app */;
 			productType = "com.apple.product-type.application";
@@ -175,6 +249,10 @@
 				Base,
 			);
 			mainGroup = C9B4472D24568192000EEDDF;
+			packageReferences = (
+				C9B447782460D4AC000EEDDF /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+				C9DB2F9E2466BE2800C60599 /* XCRemoteSwiftPackageReference "CVCalendar" */,
+			);
 			productRefGroup = C9B4473724568192000EEDDF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -202,11 +280,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9B4476A245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift in Sources */,
+				C9B447822460DC15000EEDDF /* TaskModel.swift in Sources */,
 				C9B44775245FBFBC000EEDDF /* AddTaskCustomCell.swift in Sources */,
 				C9B4476024598A72000EEDDF /* CustomStackView.swift in Sources */,
 				C9B4473E24568192000EEDDF /* TimerViewController.swift in Sources */,
+				C9B4477F2460DBCE000EEDDF /* TaskRepository.swift in Sources */,
 				C9B4475124580ADF000EEDDF /* TabBarVC.swift in Sources */,
 				C9B44764245BF974000EEDDF /* ShortBreakTask.swift in Sources */,
+				C9DB2F9D2466BA3200C60599 /* CalendarViewController.swift in Sources */,
 				C9B4475E24591C4C000EEDDF /* AlarmConstants.swift in Sources */,
 				C9B4476C245C808B000EEDDF /* LongBreakTask.swift in Sources */,
 				C9B44754245817E9000EEDDF /* CustomColor.swift in Sources */,
@@ -216,11 +297,14 @@
 				C9B4475624582A50000EEDDF /* SettingsViewController.swift in Sources */,
 				C9B44773245ED9BF000EEDDF /* NavigationController.swift in Sources */,
 				C9B4473A24568192000EEDDF /* AppDelegate.swift in Sources */,
+				C9DB2F9824664F6400C60599 /* AlertManager.swift in Sources */,
 				C9B44762245A9095000EEDDF /* CustomEffects.swift in Sources */,
 				C9B4475A2459162A000EEDDF /* PomodoroCoinsViewController.swift in Sources */,
 				C9B44768245BFC04000EEDDF /* Task.swift in Sources */,
 				C9B4475C24591704000EEDDF /* Constants.swift in Sources */,
 				C9B4476E245C817C000EEDDF /* LongBreakTimerProtocol.swift in Sources */,
+				C9B4477C2460D817000EEDDF /* DatabaseManager.swift in Sources */,
+				C95B171A24654CE10043442A /* CreateTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +492,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C9B447782460D4AC000EEDDF /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.2;
+			};
+		};
+		C9DB2F9E2466BE2800C60599 /* XCRemoteSwiftPackageReference "CVCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CVCalendar/CVCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C9B447792460D4AC000EEDDF /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B447782460D4AC000EEDDF /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+		C9DB2F9F2466BE2800C60599 /* CVCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9DB2F9E2466BE2800C60599 /* XCRemoteSwiftPackageReference "CVCalendar" */;
+			productName = CVCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C9B4472E24568192000EEDDF /* Project object */;
 }
