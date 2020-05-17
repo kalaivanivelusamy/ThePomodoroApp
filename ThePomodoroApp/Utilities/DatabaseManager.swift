@@ -16,17 +16,16 @@ final class DatabaseManager{
     static let `default` = try? DatabaseManager()
     let taskRepository: TaskRepository
 
-//    let users = Table("users")
-//    let id = Expression<Int64>("id")
-//    let name = Expression<String?>("name")
+
 
     init() throws {
         guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else{
                 throw DatabaseError.CouldNotFindPathToCreateDatabaseFileIn
         }
         print("Database path \(path)")
-       db = try Connection("\(path)/db.sqlite3")
-        
+        db = try Connection("\(path)/db.sqlite3")
+        //try TaskRepository.dropTable(in: db)
+
         taskRepository = try TaskRepository(db: db)
         
     }

@@ -110,8 +110,8 @@
             filePath = "ThePomodoroApp/Tasks/Controller/CreateTaskViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "addTasksInDb()"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "ThePomodoroApp/Tasks/Controller/CalendarViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "setUpCalendar()"
             landmarkType = "7">
          </BreakpointContent>
@@ -151,32 +151,160 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DAE3829C-31FE-4EDA-9FF2-BE26A476376E"
+            uuid = "28728E11-9DF2-468A-A529-F6E8DBED4356"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ThePomodoroApp/Utilities/TasksView/BriefTaskView.swift"
+            filePath = "ThePomodoroApp/Tasks/Controller/CreateTaskViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "tapTaskBrief(_:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "init(mode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9EF8C73C-E8F2-415B-8D2A-0D2A85434849"
+            uuid = "DF6BCF52-E967-4F63-B7F5-462487DFCA05"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ThePomodoroApp/Repository/TaskRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "listTasks(filterByDate:byStatus:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DF6BCF52-E967-4F63-B7F5-462487DFCA05 - 8535c89ff24dac1a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ThePomodoroApp.TaskRepository.listTasks(filterByDate: Swift.String, byStatus: ThePomodoroApp.FilterBy) -&gt; Swift.Array&lt;ThePomodoroApp.TaskModel&gt;"
+                  moduleName = "ThePomodoroApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalaivv/Desktop/iOS/ThePomodoroApp/ThePomodoroApp/Repository/TaskRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "11169">
+               </Location>
+               <Location
+                  uuid = "DF6BCF52-E967-4F63-B7F5-462487DFCA05 - 17b0a0f7eb55536f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SQLite.Row) -&gt; () in ThePomodoroApp.TaskRepository.listTasks(filterByDate: Swift.String, byStatus: ThePomodoroApp.FilterBy) -&gt; Swift.Array&lt;ThePomodoroApp.TaskModel&gt;"
+                  moduleName = "ThePomodoroApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalaivv/Desktop/iOS/ThePomodoroApp/ThePomodoroApp/Repository/TaskRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "29D5DD3F-2B03-4E05-AEBF-4DFED83704A8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ThePomodoroApp/Repository/TaskRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "listTasks(filterByDate:byStatus:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F48A7A9C-26ED-47C8-B866-23A8E382164C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ThePomodoroApp/Repository/TaskRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "listTasks(filterByDate:byStatus:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "579B0E8A-679F-4768-80B0-E6D14A87F818"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ThePomodoroApp/Repository/TaskRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "listTasks(filterByDate:byStatus:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F08CE852-4ED9-4098-94FD-C49844BFBA18"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThePomodoroApp/Tasks/Controller/TaksViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "getCurrentTask()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D734AC2-4466-4328-BE78-95D71004D39B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ThePomodoroApp/Timer/PomodoroVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "resetTaskTime()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8A33F1F2-A7D3-43B3-9AFC-FED60C46D7F2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ThePomodoroApp/Timer/PomodoroVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "setTaskDetails()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

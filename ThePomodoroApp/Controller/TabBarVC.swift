@@ -2,16 +2,15 @@
 //  TabBarVC.swift
 //  ThePomodoroApp
 //
-//  Created by V, Kalaivani V. (623-Extern) on 28/04/20.
-//  Copyright © 2020 V, Kalaivani V. (623-Extern). All rights reserved.
 //
 
 import UIKit
+import Foundation
 
 final class TabBarVC: UITabBarController{
     
-    lazy private var timerTab: TimerViewController = {
-        let timerTab = TimerViewController()
+    lazy private var timerTab: PomodoroVC = {
+        let timerTab = PomodoroVC()
 
         var image = UIImage(systemName: "timer")
         
@@ -39,14 +38,17 @@ final class TabBarVC: UITabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViewControllersOfTabs()
-        tabBar.barTintColor = .lightGray
-        tabBar.tintColor = .dimmedPinkRed
+        tabBar.barTintColor = .black
+        tabBar.tintColor = UIColor.CustomOrange
         
        // setUpNavigationController()
     }
     
     private func setUpViewControllersOfTabs(){
-        self.viewControllers = [timerTab,settingsTab,tasksTab]
+        let controllers = [timerTab,tasksTab,settingsTab]
+        self.viewControllers = controllers.map{
+            NavigationController(rootViewController: $0)
+        }
     }
     
     private func setUpNavigationController(){

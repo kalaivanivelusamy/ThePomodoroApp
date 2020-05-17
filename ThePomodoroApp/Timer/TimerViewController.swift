@@ -59,7 +59,8 @@ class TimerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.isHidden = true
         taskModule.title = Task.currentTask?.title
         //taskDescLbl.text = Task.currentTask?.title
         taskBriefView.setTaskDetails(details: taskModule.title ?? "", arrow: false)
@@ -125,12 +126,8 @@ class TimerViewController: UIViewController {
         
         NSLayoutConstraint.activate([height,leading,trailing,top])
         taskBriefView.layer.cornerRadius = 10.0
-        taskBriefView.delegate = self
+       // taskBriefView.delegate = self
         
-//        let tapGesture = UITapGestureRecognizer()
-//        tapGesture.addTarget(self, action: #selector(tapTaskBrief(_:)))
-//        taskBriefView.addGestureRecognizer(tapGesture)
-//        taskBriefView.isUserInteractionEnabled = true
     }
     
      private func setUpStopButton(){
@@ -527,12 +524,12 @@ extension TimerViewController: LongBreakTimerProtocol{
     
 }
 
-extension TimerViewController: TaskBriefTapped{
-    
-    func tappedTask() {
-        self.navigationController?.pushViewController(TasksViewController(), animated: true)
-    }
-}
+//extension TimerViewController: TaskBriefTapped{
+//
+//    func tappedTask() {
+//        self.navigationController?.pushViewController(TasksViewController(), animated: true)
+//    }
+//}
 
 
 

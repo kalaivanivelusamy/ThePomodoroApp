@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C95B171A24654CE10043442A /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B171924654CE10043442A /* CreateTaskViewController.swift */; };
+		C98D635E24692C1B00BE62FC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D635A24692C1B00BE62FC /* CalendarViewController.swift */; };
+		C98D635F24692C1B00BE62FC /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D635B24692C1B00BE62FC /* CalendarView.swift */; };
+		C98D636024692C1B00BE62FC /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D635C24692C1B00BE62FC /* MonthView.swift */; };
+		C98D636124692C1B00BE62FC /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D635D24692C1B00BE62FC /* WeekdaysView.swift */; };
+		C98D6363246A99DC00BE62FC /* PomodoroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D6362246A99DC00BE62FC /* PomodoroVC.swift */; };
 		C9B4473A24568192000EEDDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4473924568192000EEDDF /* AppDelegate.swift */; };
 		C9B4473E24568192000EEDDF /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4473D24568192000EEDDF /* TimerViewController.swift */; };
 		C9B4474324568198000EEDDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9B4474224568198000EEDDF /* Assets.xcassets */; };
@@ -35,12 +40,15 @@
 		C9B4477F2460DBCE000EEDDF /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B4477E2460DBCE000EEDDF /* TaskRepository.swift */; };
 		C9B447822460DC15000EEDDF /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B447812460DC15000EEDDF /* TaskModel.swift */; };
 		C9DB2F9824664F6400C60599 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DB2F9724664F6400C60599 /* AlertManager.swift */; };
-		C9DB2F9D2466BA3200C60599 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DB2F9C2466BA3200C60599 /* CalendarViewController.swift */; };
-		C9DB2FA02466BE2800C60599 /* CVCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C9DB2F9F2466BE2800C60599 /* CVCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C95B171924654CE10043442A /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		C98D635A24692C1B00BE62FC /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		C98D635B24692C1B00BE62FC /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		C98D635C24692C1B00BE62FC /* MonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		C98D635D24692C1B00BE62FC /* WeekdaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
+		C98D6362246A99DC00BE62FC /* PomodoroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroVC.swift; sourceTree = "<group>"; };
 		C9B4473624568192000EEDDF /* ThePomodoroApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePomodoroApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B4473924568192000EEDDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9B4473D24568192000EEDDF /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -69,7 +77,6 @@
 		C9B4477E2460DBCE000EEDDF /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		C9B447812460DC15000EEDDF /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		C9DB2F9724664F6400C60599 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
-		C9DB2F9C2466BA3200C60599 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +85,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9B4477A2460D4AC000EEDDF /* SQLite in Frameworks */,
-				C9DB2FA02466BE2800C60599 /* CVCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,9 +104,28 @@
 			children = (
 				C95B171924654CE10043442A /* CreateTaskViewController.swift */,
 				C9B4475724582EE1000EEDDF /* TaksViewController.swift */,
-				C9DB2F9C2466BA3200C60599 /* CalendarViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		C98D635824692BF100BE62FC /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				C9B4473D24568192000EEDDF /* TimerViewController.swift */,
+				C98D6362246A99DC00BE62FC /* PomodoroVC.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		C98D635924692BFC00BE62FC /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				C98D635B24692C1B00BE62FC /* CalendarView.swift */,
+				C98D635C24692C1B00BE62FC /* MonthView.swift */,
+				C98D635A24692C1B00BE62FC /* CalendarViewController.swift */,
+				C98D635D24692C1B00BE62FC /* WeekdaysView.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		C9B4472D24568192000EEDDF = {
@@ -122,15 +147,14 @@
 		C9B4473824568192000EEDDF /* ThePomodoroApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9B4473924568192000EEDDF /* AppDelegate.swift */,
+				C98D635924692BFC00BE62FC /* Calendar */,
 				C9B44752245817DC000EEDDF /* Utilities */,
-				C9B4477B2460D817000EEDDF /* DatabaseManager.swift */,
 				C9B447802460DC0B000EEDDF /* Model */,
 				C9B4477D2460DBBF000EEDDF /* Repository */,
 				C9B44771245ED9A7000EEDDF /* Controller */,
-				C9B4473924568192000EEDDF /* AppDelegate.swift */,
-				C9B4475024580ADF000EEDDF /* TabBarVC.swift */,
 				C95B171B24654CF30043442A /* Tasks */,
-				C9B4473D24568192000EEDDF /* TimerViewController.swift */,
+				C98D635824692BF100BE62FC /* Timer */,
 				C9B447592459162A000EEDDF /* PomodoroCoinsViewController.swift */,
 				C9B4475524582A50000EEDDF /* SettingsViewController.swift */,
 				C9B4474224568198000EEDDF /* Assets.xcassets */,
@@ -143,6 +167,7 @@
 		C9B44752245817DC000EEDDF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C9B4477B2460D817000EEDDF /* DatabaseManager.swift */,
 				C9B44753245817E9000EEDDF /* CustomColor.swift */,
 				C9B4475B24591704000EEDDF /* Constants.swift */,
 				C9B4475D24591C4C000EEDDF /* AlarmConstants.swift */,
@@ -158,6 +183,7 @@
 		C9B44771245ED9A7000EEDDF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C9B4475024580ADF000EEDDF /* TabBarVC.swift */,
 				C9B44772245ED9BF000EEDDF /* NavigationController.swift */,
 			);
 			path = Controller;
@@ -219,7 +245,6 @@
 			name = ThePomodoroApp;
 			packageProductDependencies = (
 				C9B447792460D4AC000EEDDF /* SQLite */,
-				C9DB2F9F2466BE2800C60599 /* CVCalendar */,
 			);
 			productName = ThePomodoroApp;
 			productReference = C9B4473624568192000EEDDF /* ThePomodoroApp.app */;
@@ -251,7 +276,6 @@
 			mainGroup = C9B4472D24568192000EEDDF;
 			packageReferences = (
 				C9B447782460D4AC000EEDDF /* XCRemoteSwiftPackageReference "SQLite.swift" */,
-				C9DB2F9E2466BE2800C60599 /* XCRemoteSwiftPackageReference "CVCalendar" */,
 			);
 			productRefGroup = C9B4473724568192000EEDDF /* Products */;
 			projectDirPath = "";
@@ -282,15 +306,17 @@
 				C9B4476A245C1C4D000EEDDF /* ShortBreakTimerProtocol.swift in Sources */,
 				C9B447822460DC15000EEDDF /* TaskModel.swift in Sources */,
 				C9B44775245FBFBC000EEDDF /* AddTaskCustomCell.swift in Sources */,
+				C98D636024692C1B00BE62FC /* MonthView.swift in Sources */,
 				C9B4476024598A72000EEDDF /* CustomStackView.swift in Sources */,
 				C9B4473E24568192000EEDDF /* TimerViewController.swift in Sources */,
 				C9B4477F2460DBCE000EEDDF /* TaskRepository.swift in Sources */,
 				C9B4475124580ADF000EEDDF /* TabBarVC.swift in Sources */,
 				C9B44764245BF974000EEDDF /* ShortBreakTask.swift in Sources */,
-				C9DB2F9D2466BA3200C60599 /* CalendarViewController.swift in Sources */,
 				C9B4475E24591C4C000EEDDF /* AlarmConstants.swift in Sources */,
 				C9B4476C245C808B000EEDDF /* LongBreakTask.swift in Sources */,
+				C98D6363246A99DC00BE62FC /* PomodoroVC.swift in Sources */,
 				C9B44754245817E9000EEDDF /* CustomColor.swift in Sources */,
+				C98D636124692C1B00BE62FC /* WeekdaysView.swift in Sources */,
 				C9B44770245E56D4000EEDDF /* BriefTaskView.swift in Sources */,
 				C9B4475824582EE1000EEDDF /* TaksViewController.swift in Sources */,
 				C9B44766245BF9B3000EEDDF /* TaskTimerProtocol.swift in Sources */,
@@ -300,6 +326,8 @@
 				C9DB2F9824664F6400C60599 /* AlertManager.swift in Sources */,
 				C9B44762245A9095000EEDDF /* CustomEffects.swift in Sources */,
 				C9B4475A2459162A000EEDDF /* PomodoroCoinsViewController.swift in Sources */,
+				C98D635E24692C1B00BE62FC /* CalendarViewController.swift in Sources */,
+				C98D635F24692C1B00BE62FC /* CalendarView.swift in Sources */,
 				C9B44768245BFC04000EEDDF /* Task.swift in Sources */,
 				C9B4475C24591704000EEDDF /* Constants.swift in Sources */,
 				C9B4476E245C817C000EEDDF /* LongBreakTimerProtocol.swift in Sources */,
@@ -372,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -426,7 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -440,14 +468,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ThePomodoroApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ThePomodoroApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daimler.mbux.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -457,14 +488,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ThePomodoroApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ThePomodoroApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daimler.mbux.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -502,14 +536,6 @@
 				minimumVersion = 0.12.2;
 			};
 		};
-		C9DB2F9E2466BE2800C60599 /* XCRemoteSwiftPackageReference "CVCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CVCalendar/CVCalendar.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -517,11 +543,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C9B447782460D4AC000EEDDF /* XCRemoteSwiftPackageReference "SQLite.swift" */;
 			productName = SQLite;
-		};
-		C9DB2F9F2466BE2800C60599 /* CVCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C9DB2F9E2466BE2800C60599 /* XCRemoteSwiftPackageReference "CVCalendar" */;
-			productName = CVCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

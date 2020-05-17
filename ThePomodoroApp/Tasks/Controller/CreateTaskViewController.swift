@@ -24,6 +24,8 @@ final class CreateTaskViewController: UIViewController{
     var task:TaskModel?
     var mode: Mode
     
+    static var selectedDate: String?
+    
     enum Mode{
         case Create
         case Edit(TaskModel)
@@ -38,6 +40,8 @@ final class CreateTaskViewController: UIViewController{
             task = taskModel
         }
         super.init(nibName: nil, bundle: nil)
+        CreateTaskViewController.selectedDate = self.getTodayDate()
+
     }
     
     required init?(coder: NSCoder) {
@@ -51,9 +55,9 @@ final class CreateTaskViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        dateBtn.setTitle(CreateTaskViewController.selectedDate, for: .normal)
         navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
     }
     
@@ -61,7 +65,7 @@ final class CreateTaskViewController: UIViewController{
         
         safeArea = view.layoutMarginsGuide
         
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         navigationItem.title = "Add Task"
         
         setUpTaskFieldContainer()
@@ -75,11 +79,13 @@ final class CreateTaskViewController: UIViewController{
     }
     
     private func setUpDb() throws {
+        
         guard let databaseManager = DatabaseManager.default else{
             throw DatabaseManager.DatabaseError.CouldNotFindPathToCreateDatabaseFileIn
                }
 
-               self.taskRepository = databaseManager.taskRepository
+    self.taskRepository = databaseManager.taskRepository
+        
     }
     
     private func setUpTaskFieldContainer(){
@@ -116,7 +122,7 @@ final class CreateTaskViewController: UIViewController{
             taskTF.text = taskModel.title
         }
     
-        taskTF.textColor = .black
+        taskTF.textColor = .white
         
         setUpTFUndeline()
     }
@@ -146,7 +152,7 @@ final class CreateTaskViewController: UIViewController{
         
         NSLayoutConstraint.activate([top,leading,trailing])
         
-        btnStackView.distribution = .fillEqually
+        btnStackView.distribution = .fillProportionally
         
         setUpDateBtn()
         setUpSaveBtn()
@@ -156,15 +162,26 @@ final class CreateTaskViewController: UIViewController{
     
     private func setUpDateBtn(){
         btnStackView.addArrangedSubview(dateBtn)
-        dateBtn.setTitle("Date", for: .normal)
-        dateBtn.setTitleColor(.black, for: .normal)
+        dateBtn.layer.cornerRadius = 10
+        dateBtn.setImage(UIImage(systemName: "calendar.circle"), for: .normal)
+        dateBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 10)
+        dateBtn.tintColor = .white
+        dateBtn.setTitle(CreateTaskViewController.selectedDate, for: .normal)
+        dateBtn.setTitleColor(.white, for: .normal)
+        dateBtn.backgroundColor = .darkGray
         dateBtn.addTarget(self, action: #selector(openCalendar), for: .touchUpInside)
     }
+    
+   
     
     private func setUpSaveBtn(){
         
         btnStackView.addArrangedSubview(saveBtn)
         saveBtn.setTitle("Save", for: .normal)
+       // saveBtn.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+        saveBtn.tintColor = .orange
+        saveBtn.sizeToFit()
+        saveBtn.layer.cornerRadius = 20
         saveBtn.setTitleColor(.orange, for: .normal)
         saveBtn.addTarget(self, action: #selector(addTask), for: .touchUpInside)
     }
@@ -177,6 +194,14 @@ final class CreateTaskViewController: UIViewController{
     
     
     //MARK: - Logic
+    
+    func getTodayDate() -> String{
+       let currentMonthIndex = Calendar.current.component(.month, from: Date())
+       let currentYear = Calendar.current.component(.year, from: Date())
+      let todaysDate = Calendar.current.component(.day, from: Date())
+        return  "\(todaysDate).\(currentMonthIndex).\(currentYear)"
+
+    }
     @objc func addTask(){
         validation(title: taskTF.text!)
         navigationController?.popViewController(animated: true)
@@ -185,7 +210,7 @@ final class CreateTaskViewController: UIViewController{
     func updateTask(){
         
         do{
-            guard (try self.taskRepository?.updateTask(title: taskTF.text!, id: task!.id!)) != nil else{
+            guard (try self.taskRepository?.updateTask(title: taskTF.text!, id: task!.id!,status: task?.status ?? TaskStatus.NotDone)) != nil else{
                 return
             }
         }
@@ -233,7 +258,7 @@ final class CreateTaskViewController: UIViewController{
        func addTasksInDb(){
            
            do{
-            guard (try self.taskRepository?.createTask(title: taskTF.text!)) != nil else{
+            guard (try self.taskRepository?.createTask(title: taskTF.text!,date: CreateTaskViewController.selectedDate!)) != nil else{
                    return
                }
            }

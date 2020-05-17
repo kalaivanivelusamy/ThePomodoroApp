@@ -13,10 +13,15 @@ struct TaskModel{
     static let tableName = "Tasks"
     let title:String
     let id:Int64?
-    
-    init(id:Int64? = nil, title:String) {
+    let date:String
+    var status: TaskStatus
+    let duration: Int
+    init(id:Int64? = nil, title:String,status:TaskStatus,date: String = Constants.getTodayDate()) {
         self.title = title
         self.id = id
+        self.date = date
+        self.status = status
+        self.duration = Constants.taskTimeDuration
     }
     
     func requireID() throws -> Int64{

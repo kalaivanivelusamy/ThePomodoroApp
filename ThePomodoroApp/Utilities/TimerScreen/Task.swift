@@ -17,26 +17,21 @@ final class Task{
     var timeLeft: TimeInterval = Constants.taskDuration
     static var currentTask:TaskModel?
     
+
     
-//    func setCurrentTask(){
-//        
-//    }
-    
-    func setUpTimer(){
+     func setUpTimer(){
         
         print("Task time started \(self.timeLeft)")
        
         state = .Started
         
-        timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) {timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {timer in
             
-            self.timeLeft -= 1
+            self.timeLeft -= 0.1
             if self.timeLeft == Constants.zeroTime{
                 self.state = .Finished
                 self.resetTime()
-                
             }
-
             self.delegate?.updateTimeInMinutes(with: self.timeLeft)
         }
 

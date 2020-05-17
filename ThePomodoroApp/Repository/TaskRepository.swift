@@ -16,6 +16,8 @@ final class TaskRepository{
     
     static let id = Expression<Int64>("id")
     static let title = Expression<String>("title")
+    static let status = Expression<String>("status")
+    static let date = Expression<String>("date")
     let tasksTbl = Table("\(TaskModel.tableName)")
 
     init(db: Connection) throws  {
@@ -23,44 +25,86 @@ final class TaskRepository{
         try setUp()
     }
     
+    static func dropTable(in db:Connection) throws{
+       
+        try db.execute("DROP table if exists \(TaskModel.tableName)")
+            
+        print("table dropped:\(TaskModel.tableName)")
+    }
+    
+    //MARK: - Private
+    
+    private func setUp() throws{
+        
+        try db.run(Self.table.create(ifNotExists: true){ table in
+        table.column(Self.id,primaryKey: true)
+        table.column(Self.title)
+        table.column(Self.status)
+        table.column(Self.date)
+            
+        })
+        
+        print("created table (if it did not exist) \(TaskModel.tableName)")
+
+    }
     
     //MARK: - Public
     
     //creates a task
-     func createTask(title: String) throws -> TaskModel{
-        let insert = Self.table.insert(Self.title <- title)
+    func createTask(title: String,date: String,sTatus: String = TaskStatus.NotDone.rawValue) throws -> TaskModel{
+        let insert = Self.table.insert(Self.title <- title,Self.status <- sTatus,Self.date <- date)
         let rowId = try db.run(insert)
         
-        return TaskModel.init(id: rowId,title: title)
+        return TaskModel.init(id: rowId,title: title,status: TaskStatus(rawValue: sTatus)!)
     }
     
     //edits task
-    func updateTask(title: String, id: Int64) throws -> TaskModel{
+    func updateTask(title: String, id: Int64,status:TaskStatus) throws -> TaskModel{
         let task = Self.table.filter(Self.id == id)
-        if (try db.run(task.update(Self.title <- title)) > 0){
+        if (try db.run(task.update(Self.title <- title,Self.status <- status.rawValue)) > 0){
             print("updated rows")
-            return TaskModel(id: id, title: title)
+            return TaskModel(id: id, title: title,status: status)
         }
         
-        return TaskModel(title: title)
+        return TaskModel(title: title,status: status)
 
     }
     
     //lists task
-    func listTasks()  -> [TaskModel] {
+    func listTasks(filterByDate: String,byStatus: FilterBy)  -> [TaskModel] {
        var list = [TaskModel]()
+        var query = tasksTbl
+        
+//        if !filterByDate.isEmpty{
+//            query = tasksTbl.filter(Self.date .like(filterByDate))
+//        }
+//
+//        else{
+            
+            switch byStatus {
+                case .all:
+                    query = tasksTbl.filter(Self.status .like("%%%Done")).filter(Self.date .like(Constants.TODAY))
+                case .done:
+                    query = tasksTbl.filter(Self.status .like(FilterBy.done.rawValue))
+                case .today:
+                    query = tasksTbl.filter(Self.date .like(Constants.TODAY)).filter(Self.status .like(TaskStatus.NotDone.rawValue))
+                case .byDate:
+                    query = tasksTbl.order(Self.date)
+            }
+       // }
+        
         
         do{
-            let _ = try db.prepare(tasksTbl).map{ tasks in
-                //return TaskModel(id: tasks[Self.id], title: tasks[Self.title])
-               return list.append(TaskModel(id: tasks[Self.id], title: tasks[Self.title]))
+            let _ = try db.prepare(query).map{ tasks in
+                return list.append(TaskModel(id: tasks[Self.id], title: tasks[Self.title],status: TaskStatus(rawValue: tasks[Self.status]) ?? TaskStatus.NotDone,date: tasks[Self.date]))
             }
+            return list
+
         }
         catch{
             print("Could not get list of \(TaskRepository.self) from database")
             return []
         }
-        return list
     }
     
     //delete task
@@ -81,18 +125,7 @@ final class TaskRepository{
     }
     
     
-    //MARK: - Private
     
-    private func setUp() throws{
-        
-        try db.run(Self.table.create(ifNotExists: true){ table in
-        table.column(Self.id,primaryKey: true)
-        table.column(Self.title)
-        })
-        
-        print("created table (if it did not exist) \(TaskModel.tableName)")
-
-    }
     
     
 

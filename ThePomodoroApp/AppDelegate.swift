@@ -15,12 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = NavigationController(rootViewController: TimerViewController())
-        window?.rootViewController = navigationController
-        navigationController.navigationBar.prefersLargeTitles = true
-//        navigationController.navigationBar..titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.red]
-
+        //let navigationController = NavigationController(rootViewController: TimerViewController())
+//        window?.rootViewController = navigationController
+//        navigationController.navigationBar.prefersLargeTitles = true
+//        window?.makeKeyAndVisible()
+       
+        let tabBarVC = TabBarVC()
+        window?.rootViewController = tabBarVC
+       // navigationController.navigationBar.prefersLargeTitles = true
         window?.makeKeyAndVisible()
+
+        
         return true
     }
 

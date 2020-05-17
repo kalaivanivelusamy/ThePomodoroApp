@@ -39,7 +39,7 @@ final class SettingsViewController: UIViewController{
     
     private func setUpView(){
         safeArea = view.layoutMarginsGuide
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .black
     }
     
     private func setUpDurationStackView(){

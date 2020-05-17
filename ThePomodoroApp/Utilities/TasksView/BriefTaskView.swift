@@ -13,7 +13,7 @@ final class BriefTaskView: UIView{
     private let containerView = UIView()
     private let taskDesc = UITextView()
     private let arrowImgView = UIImageView()
-    weak var delegate: TaskBriefTapped?
+   // weak var delegate: TaskBriefTapped?
     let tapGesture = UITapGestureRecognizer()
 
     override init(frame: CGRect) {
@@ -31,6 +31,7 @@ final class BriefTaskView: UIView{
     
     func setTaskDetails(details: String, arrow: Bool = true){
         taskDesc.text = details
+        taskDesc.font = UIFont.systemFont(ofSize: 14)
         arrowImgView.isHidden = arrow
        // taskDesc.removeGestureRecognizer(tapGesture)
     }
@@ -75,9 +76,9 @@ final class BriefTaskView: UIView{
         taskDesc.textAlignment = .center
         taskDesc.isEditable = false
         taskDesc.isUserInteractionEnabled = true
-           tapGesture.addTarget(self, action: #selector(tapTaskBrief(_:)))
-           taskDesc.addGestureRecognizer(tapGesture)
-           taskDesc.isUserInteractionEnabled = true
+          // tapGesture.addTarget(self, action: #selector(tapTaskBrief(_:)))
+        taskDesc.addGestureRecognizer(tapGesture)
+        taskDesc.isUserInteractionEnabled = true
         taskDesc.backgroundColor = .clear
         taskDesc.textAlignment = .left
         //taskDesc.backgroundColor = .lightGray
@@ -100,15 +101,15 @@ final class BriefTaskView: UIView{
 
     }
     
-    @objc func tapTaskBrief(_ sender: UITapGestureRecognizer){
-        
-        print("Task is tapped")
-        self.delegate?.tappedTask()
-        
-    }
+//    @objc func tapTaskBrief(_ sender: UITapGestureRecognizer){
+//
+//        print("Task is tapped")
+//        self.delegate?.tappedTask()
+//
+//    }
     
 }
 
-protocol TaskBriefTapped: class{
-    func tappedTask()
-}
+//protocol TaskBriefTapped: class{
+//    func tappedTask()
+//}

@@ -1,12 +1,19 @@
 //
 //  TaksViewController.swift
 //  ThePomodoroApp
-//
-//  Created by V, Kalaivani V. (623-Extern) on 28/04/20.
-//  Copyright © 2020 V, Kalaivani V. (623-Extern). All rights reserved.
-//
+
 
 import UIKit
+
+
+
+enum TaskStatus: String,CaseIterable{
+    case NotDone
+    case Done
+    case All
+    
+    static var asArray: [TaskStatus] {return self.allCases}
+}
 
 final class TasksViewController: UIViewController{
     
@@ -15,19 +22,34 @@ final class TasksViewController: UIViewController{
     var taskDb = [TaskModel]()
     var alert_task: UIAlertController?
     var taskRepository: TaskRepository?
-    var taskListArr = [TaskModel]()
+    
+    static var taskListArr = [TaskModel]()
+    static var todayToDoTasks = [TaskModel]()
+    static var todayAllTasks = [TaskModel]()
+    static var todayDoneTasks = [TaskModel]()
+    static var tasksByDate = [TaskModel]()
+
     let addBtn = UIButton()
     var selectedRow = 0
+    static var currentTaskIndex = 0
+    var filterStackView = UIStackView()
+    var todayBtn = UIButton()
+    var allTasksBtn = UIButton()
+    var doneTasksBtn = UIButton()
+    var byDateTasksBtn = UIButton()
+    
+    var tasksFilteredBy = FilterBy.today
+    var highlightImg = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
         do{
         try setUpDb()
         }
         catch{
            print("Errors is \( DatabaseManager.DatabaseError.CouldNotFindPathToCreateDatabaseFileIn)")
         }
+        setUpView()
        
     }
     
@@ -39,27 +61,113 @@ final class TasksViewController: UIViewController{
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
-        addLongGesture()
-        listsTasks()
+        listsTasks(filterByDate: Constants.getTodayDate(),byStatus: FilterBy.today)
+        
+    }
+    
+    
+    //MARK: - Public methods
+    
+   static func getCurrentTask() -> TaskModel?{
+    
+    let index = TasksViewController.currentTaskIndex
+    if !TasksViewController.todayToDoTasks.isEmpty{ return TasksViewController.todayToDoTasks[index] }
+        else{ return nil}
     }
     
     //MARK: - Private methods
     
     private func setUpDb() throws {
+       
         guard let databaseManager = DatabaseManager.default else{
             throw DatabaseManager.DatabaseError.CouldNotFindPathToCreateDatabaseFileIn
                }
 
-   self.taskRepository = databaseManager.taskRepository
+            self.taskRepository = databaseManager.taskRepository
+
     }
     
     private func setUpView(){
         view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
         navigationItem.title = "Tasks"
+       
+        setUpTaskFilterMenu()
 
         setUpTableView()
         setUpAddBtn()
+    }
+    
+    func setUpTaskFilterMenu(){
+        view.addSubview(filterStackView)
+        filterStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        filterStackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 10).isActive = true
+        filterStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor).isActive = true
+        filterStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
+        
+        filterStackView.distribution = .fillEqually
+        
+        setUpTodayBtn()
+        setUpAllTasksBtn()
+        setUpTasksDoneBtn()
+        setUpDateByBtn()
+        
+        setupHighlight(btn: todayBtn)
+    }
+    
+    private func setUpTodayBtn(){
+        filterStackView.addArrangedSubview(todayBtn)
+        todayBtn.setTitle("TODAY", for: .normal)
+        todayBtn.setTitleColor(.white, for: .normal)
+        todayBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        
+        todayBtn.tag = FilterBy.today.asInt()
+        todayBtn.addTarget(self, action: #selector(tasksSorted), for: .touchUpInside)
+    }
+    
+    private func setUpAllTasksBtn(){
+        filterStackView.addArrangedSubview(allTasksBtn)
+        allTasksBtn.setTitle("ALL", for: .normal)
+        allTasksBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        allTasksBtn.setTitleColor(.white, for: .normal)
+        
+        allTasksBtn.tag = FilterBy.all.asInt()
+        allTasksBtn.addTarget(self, action: #selector(tasksSorted), for: .touchUpInside)
+    }
+    
+    private func setUpTasksDoneBtn(){
+        filterStackView.addArrangedSubview(doneTasksBtn)
+        doneTasksBtn.setTitle("DONE", for: .normal)
+        doneTasksBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        doneTasksBtn.setTitleColor(.white, for: .normal)
+        
+        doneTasksBtn.tag = FilterBy.done.asInt()
+        doneTasksBtn.addTarget(self, action: #selector(tasksSorted), for: .touchUpInside)
+
+    }
+    
+    private func setUpDateByBtn(){
+        filterStackView.addArrangedSubview(byDateTasksBtn)
+        byDateTasksBtn.setTitle("By Date", for: .normal)
+        byDateTasksBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        byDateTasksBtn.setTitleColor(.white, for: .normal)
+        
+        byDateTasksBtn.tag = FilterBy.byDate.asInt()
+        byDateTasksBtn.addTarget(self, action: #selector(tasksSorted), for: .touchUpInside)
+    }
+    
+    
+    private func setupHighlight(btn: UIButton){
+        view.addSubview(highlightImg)
+        highlightImg.translatesAutoresizingMaskIntoConstraints = false
+        
+        highlightImg.topAnchor.constraint(equalTo: btn.bottomAnchor,constant: 5).isActive = true
+        highlightImg.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        highlightImg.leadingAnchor.constraint(equalTo: btn.leadingAnchor ,constant: 10).isActive = true
+        highlightImg.trailingAnchor.constraint(equalTo: btn.trailingAnchor, constant: -10).isActive = true
+        
+        highlightImg.backgroundColor = .orange
     }
     
     private func setUpTableView(){
@@ -68,7 +176,7 @@ final class TasksViewController: UIViewController{
         tblView.register(AddTaskCustomCell.self, forCellReuseIdentifier: "cellId")
         
         
-        let top = tblView.topAnchor.constraint(equalTo: safeArea.topAnchor,constant: 20)
+        let top = tblView.topAnchor.constraint(equalTo: filterStackView.bottomAnchor,constant: 20)
         let leading = tblView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor)
         let bottom = tblView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,constant: -20)
         let trailing = tblView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
@@ -96,143 +204,74 @@ final class TasksViewController: UIViewController{
         NSLayoutConstraint.activate([top,trailing,width,height])
         
         addBtn.setTitleColor(.orange, for: .normal)
-        addBtn.backgroundColor = UIColor.orange
+        addBtn.backgroundColor = UIColor.CustomOrange
         addBtn.setImage(UIImage(named: "plus"), for: .normal)
         addBtn.addTarget(self, action: #selector(createTask), for: .touchUpInside)
         addBtn.layer.masksToBounds = true
         addBtn.layer.cornerRadius = 25
     }
 
-    private func addLongGesture(){
-           
-           let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(_:)))
-           tblView.addGestureRecognizer(longpress)
-       }
     
     //MARK:- Logic
+    
+    
+    
+    @objc func tasksSorted(sender: UIButton){
+       
+         let btnTag = FilterBy.asArray[sender.tag] 
+        highlightImg.removeFromSuperview()
+        tasksFilteredBy = btnTag
+        
+        switch btnTag {
+        case .today:
+             setupHighlight(btn: todayBtn)
+             listsTasks(filterByDate: Constants.getTodayDate(),byStatus: .today)
+        case .all:
+            setupHighlight(btn: allTasksBtn)
+            listsTasks(filterByDate: "",byStatus: .all)
+        case .done:
+            setupHighlight(btn: doneTasksBtn)
+            listsTasks(filterByDate: "",byStatus: .done)
+        case .byDate:
+            setupHighlight(btn: byDateTasksBtn)
+            listsTasks(filterByDate: "",byStatus: .byDate)
+        
+        }
+    }
     
     @objc func createTask(){
         self.navigationController?.pushViewController(CreateTaskViewController(mode: .Create), animated: true)
     }
     
-    func listsTasks(){
+    func listsTasks(filterByDate: String,byStatus: FilterBy){
         
-        self.taskListArr = self.taskRepository?.listTasks() as! [TaskModel]
-             taskDb = self.taskListArr
-             tblView.reloadData()
+        TasksViewController.taskListArr = self.taskRepository?.listTasks(filterByDate:filterByDate, byStatus: byStatus ) as! [TaskModel]
+       
+        switch (byStatus) {
+        case .all:
+            TasksViewController.todayAllTasks = TasksViewController.taskListArr
+        case .today:
+            TasksViewController.todayToDoTasks = TasksViewController.taskListArr
+        case .done:
+            TasksViewController.todayDoneTasks = TasksViewController.taskListArr
+        case .byDate:
+            TasksViewController.tasksByDate = TasksViewController.taskListArr
+
+        }
+        taskDb = TasksViewController.taskListArr
+        tblView.reloadData()
      }
      
      func deleteTasks(id: Int64) {
-       
         do{
             let _ =  try self.taskRepository?.deleteTask(taskId:id)
         }
         catch{
             print("Error")
         }
-    
      }
     
-    @objc func longPressGestureRecognized(_ gestureRecognizer: UIGestureRecognizer) {
-        
-        let longPress = gestureRecognizer as! UILongPressGestureRecognizer
-        let state = longPress.state
-        let locationInView = longPress.location(in: tblView)
-        let indexPath = tblView.indexPathForRow(at: locationInView)
-        
-        
-        struct My {
-            static var cellSnapshot : UIView? = nil
-            static var cellIsAnimating : Bool = false
-            static var cellNeedToShow : Bool = false
-        }
-        struct Path {
-            static var initialIndexPath : IndexPath? = nil
-        }
-        
-        
-        switch state {
-            case UIGestureRecognizerState.began:
-                    if indexPath != nil {
-                            Path.initialIndexPath = indexPath
-                            let cell = tblView.cellForRow(at: indexPath!) as! AddTaskCustomCell?
-                            My.cellSnapshot  = snapshotOfCell(cell!)
-                        var center = cell?.center
-                        My.cellSnapshot!.center = center!
-                        My.cellSnapshot!.alpha = 0.0
-                        tblView.addSubview(My.cellSnapshot!)
-                        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                            center?.y = locationInView.y
-                            My.cellIsAnimating = true
-                            My.cellSnapshot!.center = center!
-                            My.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-                            My.cellSnapshot!.alpha = 0.98
-                            cell?.alpha = 0.0
-                        }, completion: { (finished) -> Void in
-                            if finished {
-                                My.cellIsAnimating = false
-                                if My.cellNeedToShow {
-                                    My.cellNeedToShow = false
-                                    UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                                        cell?.alpha = 1
-                                    })
-                                } else {
-                                    cell?.isHidden = true
-                                }
-                            }
-                        })
-            }
-        case UIGestureRecognizerState.changed:
-            if My.cellSnapshot != nil {
-                var center = My.cellSnapshot!.center
-                center.y = locationInView.y
-                My.cellSnapshot!.center = center
-                if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-                    taskDb.insert(taskDb.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
-                    tblView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
-                    Path.initialIndexPath = indexPath
-                }
-            }
-        default:
-            if Path.initialIndexPath != nil {
-                let cell = tblView.cellForRow(at: Path.initialIndexPath!) as! AddTaskCustomCell?
-                if My.cellIsAnimating {
-                    My.cellNeedToShow = true
-                } else {
-                    cell?.isHidden = false
-                    cell?.alpha = 0.0
-                }
-            UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            My.cellSnapshot!.center = (cell?.center)!
-            My.cellSnapshot!.transform = CGAffineTransform.identity
-                My.cellSnapshot!.alpha = 0.0
-                cell?.alpha = 1.0
-            }, completion: { (finished) -> Void in
-            if finished {
-            Path.initialIndexPath = nil
-            My.cellSnapshot!.removeFromSuperview()
-            My.cellSnapshot = nil
-               }
-            })
-          }
-        }
-        
-    }
-    
-    func snapshotOfCell(_ inputView: UIView) -> UIView {
-        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
-        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
-        UIGraphicsEndImageContext()
-        let cellSnapshot : UIView = UIImageView(image: image)
-        cellSnapshot.layer.masksToBounds = false
-        cellSnapshot.layer.cornerRadius = 0.0
-        cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
-        cellSnapshot.layer.shadowRadius = 5.0
-        cellSnapshot.layer.shadowOpacity = 0.4
-        return cellSnapshot
-    }
-
+   
     @objc func addAction(){
         print ("Clicked add method")
         alert_task?.textFields![0].text = ""
@@ -258,21 +297,24 @@ extension TasksViewController: UITableViewDelegate{
         }
         let task = taskDb[indexPath.row]
         taskCell.set(taskName: task.title)
-        taskCell.taskView.removeTapAction()
+        taskCell.taskView.removeTapAction() 
        // taskCell.taskView.delegate = self
         return taskCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 90
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.selectedRow = indexPath.row
         let task = taskDb[indexPath.row]
-        Task.currentTask = TaskModel(id: task.id, title: task.title)
-        self.navigationController?.popViewController(animated: true)
+        Task.currentTask = TaskModel(id: task.id, title: task.title,status: task.status)
+        if tasksFilteredBy == .today{
+        self.tabBarController?.selectedIndex = 0
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -303,6 +345,17 @@ extension TasksViewController: UITableViewDelegate{
     }
 }
 
+enum FilterBy: String,CaseIterable{
+    case today
+    case all
+    case done
+    case byDate
+    
+    static var asArray: [FilterBy] {return self.allCases}
 
+    func asInt() -> Int {
+        return FilterBy.asArray.firstIndex(of: self)!
+    }
+}
 
 
